@@ -15,3 +15,21 @@ package.
     cd $your_bootstrap_clone_or_download/
     /path/to/meteor-package-bootstrap.sh $your_meteor_project/packages/bootstrap 
 
+## Advantages over including the source files in your project
+
+From my experience, it's a bad idea to directly include the Bootstrap LESS
+files in a Meteor project:
+
+* It will make your development environment a lot slower, as many extra files 
+  need to be converted by Meteor and fetched by your browser.
+* It does not satisfy dependencies of third party packages that explicitly 
+  depend on the core bootstrap package. If you add one of those, you will end up 
+  with two bootstraps in your project.
+* Resources of packages are loaded earlier than project files. If you have an 
+  external package extending bootstrap, it's styling will be loaded before 
+  bootstrap.
+* Having to rename all imports to end with .lessimport makes it hard to keep 
+  up with newer bootstrap releases.
+* The order in which the bootstrap javascript files are loaded by Meteor 
+  (alphabetically) is incorrect, leading to Javascript errors that can only 
+  be fixed by renaming the files.
