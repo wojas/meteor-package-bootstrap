@@ -10,10 +10,26 @@ on bootstrap will have their dependency properly satisfied.
 The structure of the generated Meteor package is the same as of the core
 package.
 
+
 ## Usage
 
     cd $your_bootstrap_clone_or_download/
     /path/to/meteor-package-bootstrap.sh $your_meteor_project/packages/bootstrap 
+
+
+## Using variables.less and mixins.less
+
+The build script copies variables.less and mixins.less to your package directory,
+so that you can use their definitions in your project.
+
+Meteor will not automatically load these files. To import them, you need to add 
+two lines similar these:
+
+    @import "../packages/bootstrap/variables.less";
+    @import "../packages/bootstrap/mixins.less";
+
+The exact path depends on from where you are importing the files.
+
 
 ## Advantages over including the source files in your project
 

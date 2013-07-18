@@ -88,6 +88,12 @@ Package.on_use(function (api) {
 });
 EOF
 
+if [ -d less ]; then
+	echo "* Copying a few useful less imports for use in your project"
+	echo '  To use these, add something like: @import("../packages/bootstrap/variables.less");'
+	echo "  Files:  variables.less mixins.less"
+	cp less/variables.less less/mixins.less "$dest"
+fi
 
 echo "* Your package name is '$package_name' and is located at: $dest"
 if [ "$package_name" != "bootstrap" ]; then
